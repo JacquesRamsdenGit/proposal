@@ -70,7 +70,7 @@ section { display: grid; gap: 1.2rem; padding-top: 3rem; }
 .glance .big.accent { color: var(--accent); }
 
 /* Before / after */
-.ba { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.ba { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1rem; }
 .ba > div { background: var(--surface); border: 1px solid var(--line); padding: 1.1rem 1.2rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
 .ba ul, .list { margin: 0; padding-left: 1.2rem; display: grid; gap: .35rem; }
 .ba .after { border-color: var(--accent); background: var(--accent-soft); }
@@ -95,7 +95,7 @@ section { display: grid; gap: 1.2rem; padding-top: 3rem; }
 .cap { display: grid; gap: .3rem; max-width: 70ch; }
 .cap h3 { font-size: 1.5rem; }
 .cap p { color: var(--muted); }
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1rem; }
 .fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; }
 .field { display: grid; gap: .25rem; min-width: 0; }
 .field > span { font-size: .8rem; font-weight: 600; color: var(--muted); }
@@ -109,9 +109,15 @@ section { display: grid; gap: 1.2rem; padding-top: 3rem; }
 .btn.danger { color: var(--bad); border-color: var(--bad); }
 .btn.danger-solid { background: var(--bad); border-color: var(--bad); color: var(--bg); }
 .impact { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; }
+.nav { display: grid; gap: .15rem; font-size: .95rem; }
+.nav div { padding: .4rem .7rem; border-radius: 4px; }
+.nav .sub { margin-left: 1.4rem; }
+.nav .grp { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.nav .on { background: var(--surface-2); font-weight: 600; }
+.nav .new { color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-left: .4rem; }
 .btns { display: flex; flex-wrap: wrap; gap: .5rem; }
 .check { background: var(--bg); border: 1px solid var(--line); padding: .8rem 1rem; display: grid; gap: .45rem; border-radius: 4px; align-content: start; }
-.check .row { display: flex; justify-content: space-between; gap: 1rem; }
+.check .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem 1rem; }
 .check .row.total { border-top: 1px solid var(--line); padding-top: .45rem; font-weight: 700; }
 .tick { color: var(--ok); font-weight: 700; }
 .alert { padding: .65rem .85rem; border-radius: 4px; display: grid; gap: .1rem; font-size: .92rem; }
@@ -147,7 +153,7 @@ tr.tot td { font-weight: 700; border-top: 2px solid var(--ink); border-bottom: 0
 /* Paper statement (always a white sheet) */
 .paper { background: var(--paper); color: var(--paper-ink); border: 1px solid var(--line); padding: 1.6rem 1.8rem; max-width: 980px; margin-inline: auto; display: grid; gap: 1rem; font-family: Arial, Helvetica, sans-serif; font-size: .88rem; position: relative; }
 .paper-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: .6rem 1.5rem; }
-.paper-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; align-items: start; }
+.paper-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1.4rem; align-items: start; }
 .paper-cols > div { display: grid; gap: .9rem; min-width: 0; }
 .paper .wm { border: 1px dashed var(--paper-line); padding: .1rem .5rem; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .paper-note { max-width: 980px; margin-inline: auto; width: 100%; }
@@ -164,7 +170,7 @@ tr.tot td { font-weight: 700; border-top: 2px solid var(--ink); border-bottom: 0
 .doc-table tr.phase td { background: var(--surface-2); font-weight: 700; }
 .doc-table tr.grand td { background: var(--ink); color: var(--bg); font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 5vw, 2.6rem); line-height: 1.1; padding: 1.1rem .9rem; border: 0; letter-spacing: .02em; text-transform: uppercase; }
 .doc-table tr.grand td.num { font-variant-numeric: tabular-nums; }
-.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1rem; }
 .cols > div { background: var(--surface); border: 1px solid var(--line); padding: 1.1rem 1.2rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
 .sign { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.6rem; background: var(--surface); border: 1px solid var(--line); padding: 1.4rem; }
 .sign .line { border-bottom: 1px solid var(--ink); height: 2.4rem; }
@@ -172,6 +178,40 @@ tr.tot td { font-weight: 700; border-top: 2px solid var(--ink); border-bottom: 0
 .foot { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 3rem; }
 a { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Phone width: tables become one card per row (labels come from the column headings, set by the script at the end of the page) */
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .screen-body { padding: 1rem .85rem 1.1rem; }
+  .dim { padding: .7rem; }
+  .modal { padding: .9rem; }
+  .paper { padding: 1rem .9rem; }
+  .btn { white-space: normal; }
+  .glance > div, .sumstrip > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .glance > div:last-child, .sumstrip > div:last-child { border-bottom: 0; }
+  .doc-table { border: 0; background: transparent; }
+  table.rt { display: block; }
+  table.rt thead { display: none; }
+  table.rt tbody { display: grid; gap: .6rem; }
+  table.rt tr { display: block; position: relative; border: 1px solid var(--line); border-radius: 6px; padding: .55rem .8rem; background: var(--surface); }
+  table.rt td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border: 0; padding: .22rem 0; text-align: right; background: transparent; }
+  table.rt td::before { content: attr(data-label); color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-align: left; flex: none; }
+  table.rt td.lead { display: block; text-align: left; font-weight: 700; padding: 0 0 .4rem; margin-bottom: .25rem; border-bottom: 1px solid var(--line); }
+  table.rt td.lead::before, table.rt td.nolabel::before { display: none; }
+  table.rt td.empty { display: none; }
+  table.rt td.nolabel { position: absolute; top: .6rem; right: .8rem; padding: 0; }
+  table.rt tr:has(td.nolabel) td.lead { padding-right: 2rem; }
+  table.rt td.long { display: block; text-align: left; }
+  table.rt td.long::before { display: block; margin-bottom: .15rem; }
+  table.rt tr.sel { background: var(--accent-soft); }
+  table.rt tr.phase, table.rt tr.sub { background: var(--surface-2); }
+  table.rt tr.tot { border-top: 2px solid var(--ink); }
+  table.rt tr.grand { background: var(--ink); color: var(--bg); }
+  table.rt tr.grand td.lead { border-bottom: 0; }
+  table.rt tr.grand td::before { color: inherit; opacity: .75; }
+  table.rt tr.sel td, table.rt tr.sub td, table.rt tr.tot td, table.rt tr.phase td, table.rt tr.grand td { background: transparent; }
+  table.rt tr.tot td, table.rt tr.grand td { border-top: 0; }
+}
 </style>
 
 <div class="wrap">
@@ -257,7 +297,7 @@ a { color: var(--accent); }
       <div class="good">Paid release notes appear in the Paid tab as today.</div></div>
     <div class="step"><b>Otherwise</b><p>The release note stays in Pending Payment until its remaining invoices are paid.</p></div>
     <div class="step"><b>Paid by mistake?</b><p>An administrator can reverse a payment on the Carrier Payments screen. The release notes go back to Pending Payment. The reversal is recorded.</p></div>
-    <div class="step"><b>Invoice or release note deleted</b><p>If a carrier invoice is deleted, or a release note on it is deleted, the user is warned first. The carrier invoice is removed and the other release notes on it go back to Pending Payment.</p></div>
+    <div class="step"><b>Invoice or release note deleted</b><p>Only the Superuser account can do this. If a carrier invoice is deleted, or a release note on it is deleted, the user is warned first. The carrier invoice is removed and the other release notes on it go back to Pending Payment.</p></div>
   </div>
 </section>
 
@@ -308,7 +348,7 @@ a { color: var(--accent); }
   </div>
 
   <!-- Screen 2 -->
-  <div class="cap"><span class="label">Screen 2</span><h3>Carrier invoice list</h3><p>Every captured invoice, filterable by carrier, month and status. Edit opens the capture form with the invoice filled in, and all the same checks run again on save. Delete shows a warning of what will be affected first (see Screen 8). Once an invoice is marked as paid, Edit is switched off (greyed out below). To change it, reverse the payment first.</p></div>
+  <div class="cap"><span class="label">Screen 2</span><h3>Carrier invoice list</h3><p>Every captured invoice, filterable by carrier, month and status. Edit opens the capture form with the invoice filled in, and all the same checks run again on save. Delete shows a warning of what will be affected first (see Screen 8) and can only be done by the Superuser account, as for invoices and release notes elsewhere in the system. Once an invoice is marked as paid, Edit is switched off (greyed out below). To change it, reverse the payment first.</p></div>
   <div class="screen">
     <div class="screen-bar"><span>Carrier Invoices</span><span class="tag">Mockup</span></div>
     <div class="screen-body">
@@ -447,7 +487,7 @@ a { color: var(--accent); }
   </div>
 
   <!-- Screen 7 -->
-  <div class="cap"><span class="label">Screen 7 · Phase 1</span><h3>System Settings: carrier invoice cut-off day</h3><p>A new setting that decides which month's list a carrier invoice goes on. Without it, an invoice dated 26 August sits on August's list and only shows as brought forward in September, so you would go back to August to mark it paid. With a cut-off of 25, it lands on September's list with the other invoices in the same payment cycle.</p></div>
+  <div class="cap"><span class="label">Screen 7 · Phase 1</span><h3>System Settings: cut-off day and start date</h3><p>A new setting that decides which month's list a carrier invoice goes on. Without it, an invoice dated 26 August sits on August's list and only shows as brought forward in September, so you would go back to August to mark it paid. With a cut-off of 25, it lands on September's list with the other invoices in the same payment cycle. A second setting, the carrier payments start date, keeps old history out of the "Authorised but not yet captured" lists.</p></div>
   <div class="screen">
     <div class="screen-bar"><span>Admin › System Settings</span><span class="tag">Mockup</span></div>
     <div class="screen-body">
@@ -460,6 +500,7 @@ a { color: var(--accent); }
           </div>
           <span class="label">Carrier invoices</span>
           <div class="field"><span>Carrier invoice cut-off day of month <span class="pill ok">New</span></span><div class="input focus num">25</div><small style="color:var(--muted)">Carrier invoices dated after this day go on the next month's list. Use 31 for normal calendar months. In shorter months the last day of the month is used.</small></div>
+          <div class="field"><span>Carrier payments start date <span class="pill ok">New</span></span><div class="input focus">01/08/2026 <small>▾</small></div><small style="color:var(--muted)">Release notes delivered before this date are left out of "Authorised but not yet captured" and the Carrier Overview. Release notes already marked paid are never listed. Leave empty to include everything.</small></div>
           <div class="btns"><span class="btn primary">Save settings</span></div>
         </div>
         <div class="check">
@@ -473,13 +514,14 @@ a { color: var(--accent); }
             </tbody>
           </table></div>
           <span style="color:var(--muted);font-size:.88rem">The list is worked out when the invoice is captured and kept with it. Changing the cut-off day only affects invoices captured afterwards.</span>
+          <span style="color:var(--muted);font-size:.88rem">The start date only hides old, uncaptured history. Invoices already captured, and any unpaid balance brought forward, always stay visible.</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Screen 8 -->
-  <div class="cap"><span class="label">Screen 8 · Phase 1 and 2</span><h3>Deleting a carrier invoice</h3><p>Uses the same warning dialog as deleting an invoice or release note today. It lists everything that will be affected before anything is removed. Here a paid invoice covering two release notes is being deleted.</p></div>
+  <div class="cap"><span class="label">Screen 8 · Phase 1 and 2</span><h3>Deleting a carrier invoice</h3><p>Uses the same warning dialog as deleting an invoice or release note today, and like those it can only be done by the Superuser account. It lists everything that will be affected before anything is removed. Here a paid invoice covering two release notes is being deleted.</p></div>
   <div class="dim"><div class="modal" style="max-width:600px">
     <h3>Delete Carrier Invoice IO000187</h3>
     <div class="alert bad"><b>This action is permanent</b><span>Deleting carrier invoice IO000187 cannot be undone. If this data is needed again, it will have to be re-captured from scratch.</span></div>
@@ -498,7 +540,7 @@ a { color: var(--accent); }
   </div></div>
 
   <!-- Screen 9 -->
-  <div class="cap"><span class="label">Screen 9 · Phase 1 and 2</span><h3>Deleting a release note that is on a carrier invoice</h3><p>When a release note is linked to a carrier invoice, the existing delete dialog now also warns that the carrier invoice will be removed and that any other release notes on it go back to Pending Payment.</p></div>
+  <div class="cap"><span class="label">Screen 9 · Phase 1 and 2</span><h3>Deleting a release note that is on a carrier invoice</h3><p>When a release note is linked to a carrier invoice, the existing delete dialog now also warns that the carrier invoice will be removed and that any other release notes on it go back to Pending Payment. Deleting a release note remains a Superuser-only action.</p></div>
   <div class="dim"><div class="modal" style="max-width:600px">
     <h3>Delete Release Note #1051</h3>
     <div class="alert bad"><b>This action is permanent</b><span>Deleting release note #1051 cannot be undone. If this data is needed again, it will have to be re-captured from scratch.</span></div>
@@ -513,6 +555,68 @@ a { color: var(--accent); }
     <div><span class="box"></span> I understand this is permanent, cannot be undone, and I have ensured a recent backup exists.</div>
     <div class="btns"><span class="btn danger-solid off">Delete Permanently</span><span class="btn">Cancel</span></div>
   </div></div>
+
+  <!-- Screen 10 -->
+  <div class="cap"><span class="label">Screen 10 · Phase 2</span><h3>Carrier Overview</h3><p>One line per carrier for the chosen month, so you can see what is owed across all carriers at a glance. Open a line to go straight to that carrier's Carrier Payments screen. Administrators only, like Carrier Payments. The carriers other than RBK Trading are examples.</p></div>
+  <div class="screen">
+    <div class="screen-bar"><span>Carrier Overview</span><span class="tag">Mockup</span></div>
+    <div class="screen-body">
+      <div class="screen-title"><h3>Carrier Overview</h3></div>
+      <div class="fields">
+        <div class="field"><span>Month</span><div class="input">August 2026 <small>▾</small></div><small style="color:var(--muted)">Period: 01/08/2026 to 31/08/2026</small></div>
+      </div>
+      <div class="sumstrip">
+        <div><span class="label">Brought forward</span><span class="v">R 8,740.00</span></div>
+        <div><span class="label">Invoiced in month</span><span class="v">R 105,915.00</span></div>
+        <div><span class="label">Paid</span><span class="v ok">R 75,210.00</span></div>
+        <div><span class="label">Total due</span><span class="v warn">R 39,445.00</span></div>
+      </div>
+      <div class="scroll"><table>
+        <thead><tr><th>Carrier</th><th class="num">Brought forward</th><th class="num">Invoiced</th><th class="num">Paid</th><th class="num">Outstanding</th><th class="num">Total due</th><th>Awaiting capture</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>RBK Trading</td><td class="num">0.00</td><td class="num">56,005.00</td><td class="num">43,930.00</td><td class="num">12,075.00</td><td class="num">12,075.00</td><td>2 invoices · R 17,020.00</td><td><span class="btn sm">Open</span></td></tr>
+          <tr><td>Carrier B</td><td class="num">8,740.00</td><td class="num">31,280.00</td><td class="num">31,280.00</td><td class="num">0.00</td><td class="num">8,740.00</td><td>None</td><td><span class="btn sm">Open</span></td></tr>
+          <tr><td>Carrier C</td><td class="num">0.00</td><td class="num">18,630.00</td><td class="num">0.00</td><td class="num">18,630.00</td><td class="num">18,630.00</td><td>1 invoice · R 6,900.00</td><td><span class="btn sm">Open</span></td></tr>
+          <tr class="tot"><td>All carriers</td><td class="num">8,740.00</td><td class="num">105,915.00</td><td class="num">75,210.00</td><td class="num">30,705.00</td><td class="num">39,445.00</td><td>3 invoices · R 23,920.00</td><td></td></tr>
+        </tbody>
+      </table></div>
+      <p style="color:var(--muted);font-size:.88rem">Total due is brought forward plus outstanding for the month. "Awaiting capture" counts invoice numbers on authorised containers that have no carrier invoice captured yet. They are not included in the other figures.</p>
+    </div>
+  </div>
+
+  <!-- Screen 11 -->
+  <div class="cap"><span class="label">Screen 11 · Phases 1 and 2</span><h3>Navigation menu</h3><p>A new "Carrier Payments" group in the sidebar, for administrators only, between Credit Notes and Maintenance. It sits with the other money items. No extra PIN is asked. The capture and edit forms are reached from Carrier Invoices, and buttons link the pages together.</p></div>
+  <div class="two">
+    <div class="screen">
+      <div class="screen-bar"><span>Sidebar (administrator)</span><span class="tag">Mockup</span></div>
+      <div class="screen-body">
+        <div class="nav">
+          <div>Dashboard</div>
+          <div>Releases</div>
+          <div>Release Notes</div>
+          <div>Invoices</div>
+          <div>Demurrage Invoices</div>
+          <div>Credit Notes</div>
+          <div class="grp">Carrier Payments <span class="new">New</span></div>
+          <div class="sub">Overview</div>
+          <div class="sub on">Carrier Invoices</div>
+          <div class="sub">Carrier Payments</div>
+          <div>Maintenance</div>
+          <div>Reports</div>
+          <div>Admin</div>
+        </div>
+      </div>
+    </div>
+    <div class="check">
+      <span class="label">How the pages link together</span>
+      <div class="row"><span>Overview, Open</span><span>Carrier Payments for that carrier and month</span></div>
+      <div class="row"><span>Carrier Payments, + Capture carrier invoice</span><span>Capture form with the carrier and invoice number filled in</span></div>
+      <div class="row"><span>Carrier Invoices, + Capture invoice or Edit</span><span>Capture / edit form</span></div>
+      <div class="row"><span>Release note, paid via carrier invoice</span><span>Carrier Payments for that invoice's carrier and month</span></div>
+      <div class="row"><span>Admin, Settings</span><span>Cut-off day and start date</span></div>
+      <span style="color:var(--muted);font-size:.88rem">The menu highlights Carrier Invoices while you are on its capture and edit pages, and the group opens automatically. The phone menu is the same list.</span>
+    </div>
+  </div>
 </section>
 
 <section id="rules">
@@ -525,12 +629,13 @@ a { color: var(--accent); }
       <tr><td><b>One capture per invoice</b></td><td>A carrier invoice number can be captured once per carrier.</td></tr>
       <tr><td><b>VAT</b></td><td>VAT is used only for the check above. The captured invoice keeps the total exactly as entered, so a later change to the system VAT rate does not alter captured invoices. Carriers not registered for VAT are checked without VAT.</td></tr>
       <tr><td><b>Month and cut-off day</b></td><td>The invoice date and the cut-off day in System Settings decide the month's list. An invoice dated on or before the cut-off day goes on that month's list. An invoice dated after it goes on the next month's list. The default cut-off is the last day of the month, which gives normal calendar months. The list is fixed when the invoice is captured. Unpaid invoices from earlier months show as brought forward until paid.</td></tr>
+      <tr><td><b>Start date</b></td><td>The carrier payments start date in System Settings hides history from "Authorised but not yet captured" and the Carrier Overview. Release notes delivered before it are left out, and release notes already marked paid are never listed. It does not hide invoices already captured, and does not stop an invoice being captured. Leave it empty to include everything.</td></tr>
       <tr><td><b>Locking</b></td><td>Once an invoice is captured, the invoice number and fee on its containers cannot be changed, and no further containers can be given that invoice number. To change them, edit the unpaid carrier invoice (the checks run again) or delete it.</td></tr>
       <tr><td><b>Payments</b></td><td>Invoices are paid in full. Partial payments are not supported. Once an invoice is marked as paid it cannot be edited, including its invoice number, date and amount. To change it, an administrator reverses the payment first, and who did that and when is recorded.</td></tr>
-      <tr><td><b>Deleting a carrier invoice</b></td><td>Uses the same warning dialog and the same permission as deleting an invoice today. The dialog lists what will be affected. The carrier invoice is removed, and if it was paid its payment is removed too. Every release note on it moves back to Pending Payment. The containers keep their invoice number, so it returns to "Authorised but not yet captured".</td></tr>
-      <tr><td><b>Deleting a release note on a carrier invoice</b></td><td>The existing delete dialog warns that the carrier invoice will be removed, and that any other release notes on that invoice will move back to Pending Payment. If the carrier invoice was paid, its payment is removed too.</td></tr>
+      <tr><td><b>Deleting a carrier invoice</b></td><td>Can only be done by the Superuser account, as for invoices today, using the same warning dialog. The dialog lists what will be affected. The carrier invoice is removed, and if it was paid its payment is removed too. Every release note on it moves back to Pending Payment. The containers keep their invoice number, so it returns to "Authorised but not yet captured".</td></tr>
+      <tr><td><b>Deleting a release note on a carrier invoice</b></td><td>Release notes can only be deleted by the Superuser account today, and that does not change. The existing delete dialog warns that the carrier invoice will be removed, and that any other release notes on that invoice will move back to Pending Payment. If the carrier invoice was paid, its payment is removed too.</td></tr>
       <tr><td><b>Charity cargo</b></td><td>Charity cargo containers carry no invoice and never appear in Carrier Payments.</td></tr>
-      <tr><td><b>Access</b></td><td>Capturing and editing invoices and marking them paid is limited to administrators, the same as "Mark as Paid" today. Deleting follows the same permission as deleting invoices and release notes today.</td></tr>
+      <tr><td><b>Access</b></td><td>The Carrier Payments menu and its screens are visible to administrators only, with no extra PIN prompt. Capturing and editing invoices and marking them paid is limited to administrators, the same as "Mark as Paid" today. Deleting a carrier invoice, or a release note on one, can only be done by the Superuser account, as the rest of the system enforces for invoices and release notes.</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -560,12 +665,14 @@ a { color: var(--accent); }
       <span class="label">Included</span>
       <ul class="list">
         <li>Carrier Invoices screen with capture, validation, list, and edit (unpaid only)</li>
-        <li>Deleting a carrier invoice, with a warning of what is affected and release notes returned to Pending Payment</li>
+        <li>Deleting a carrier invoice (Superuser account only), with a warning of what is affected and release notes returned to Pending Payment</li>
         <li>Deleting a release note that is on a carrier invoice, with the same warning</li>
         <li>VAT-inclusive check of the invoice total against the container fees, at the current system rate</li>
         <li>Locking of invoice numbers and fees once captured</li>
-        <li>Carrier invoice cut-off day setting under System Settings</li>
+        <li>Carrier invoice cut-off day and carrier payments start date settings under System Settings</li>
+        <li>A "Carrier Payments" menu group (Overview, Carrier Invoices, Carrier Payments) for administrators</li>
         <li>Carrier Payments screen by carrier and month, with brought-forward balances</li>
+        <li>Carrier Overview screen showing every carrier's balance for the month, linking through to each carrier's payments</li>
         <li>List of authorised invoice numbers not yet captured</li>
         <li>Mark as paid and reverse payment, with audit trail</li>
         <li>Release note Paid status driven by carrier invoice payments, and removal of the old button</li>
@@ -581,6 +688,7 @@ a { color: var(--accent); }
         <li>Importing or reading the carrier's emailed statement automatically</li>
         <li>Comparing a carrier's statement total to the system and showing the difference</li>
         <li>Making bank payments from the system</li>
+        <li>Anything new on the Dashboard</li>
       </ul>
     </div>
   </div>
@@ -592,29 +700,31 @@ a { color: var(--accent); }
   <div class="scroll doc-table"><table>
     <thead><tr><th>Item</th><th class="num">Hours</th><th class="num">Amount</th></tr></thead>
     <tbody>
-      <tr class="phase"><td>Phase 1. Capture carrier invoices</td><td class="num">21.5</td><td class="num">R 12,900</td></tr>
+      <tr class="phase"><td>Phase 1. Capture carrier invoices</td><td class="num">24</td><td class="num">R 14,400</td></tr>
       <tr><td>Data model and database migration</td><td class="num">1.5</td><td class="num">R 900</td></tr>
       <tr><td>Capture rules (invoice exists, amount matches, duplicates, VAT)</td><td class="num">4</td><td class="num">R 2,400</td></tr>
-      <tr><td>Capture screen and carrier invoice list</td><td class="num">5</td><td class="num">R 3,000</td></tr>
+      <tr><td>Capture screen and carrier invoice list</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
       <tr><td>Locking of captured invoice numbers; list of authorised, not yet captured</td><td class="num">2</td><td class="num">R 1,200</td></tr>
-      <tr><td>Cut-off day setting (database, System Settings field, month list set at capture, list filter)</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+      <tr><td>Cut-off day and start date settings (database, System Settings fields, month list set at capture, list filters)</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
+      <tr><td>Carrier Payments menu group and links between the pages</td><td class="num">1</td><td class="num">R 600</td></tr>
       <tr><td>Deleting a carrier invoice (impact warning, release notes returned to Pending Payment)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
       <tr><td>Deleting a release note on a carrier invoice (warning, linked carrier invoice removed)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
       <tr><td>Testing</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
 
-      <tr class="phase"><td>Phase 2. Payments and reconciliation</td><td class="num">22</td><td class="num">R 13,200</td></tr>
+      <tr class="phase"><td>Phase 2. Payments and reconciliation</td><td class="num">23</td><td class="num">R 13,800</td></tr>
       <tr><td>Payment data model and migration</td><td class="num">1</td><td class="num">R 600</td></tr>
-      <tr><td>Monthly totals, brought forward, mark paid, reverse payment, audit trail</td><td class="num">5</td><td class="num">R 3,000</td></tr>
+      <tr><td>Monthly totals, brought forward, mark paid, reverse payment, audit trail</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
       <tr><td>Month periods from the cut-off day (period dates, brought forward, year-end)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
       <tr><td>Release note Paid status from carrier payments; remove old button; protect existing paid notes</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
-      <tr><td>Carrier Payments screen and Mark as paid dialog</td><td class="num">7</td><td class="num">R 4,200</td></tr>
+      <tr><td>Carrier Payments screen and Mark as paid dialog</td><td class="num">6</td><td class="num">R 3,600</td></tr>
+      <tr><td>Carrier Overview screen (all carriers for a month, link through to each carrier)</td><td class="num">3</td><td class="num">R 1,800</td></tr>
       <tr><td>Removing payments and reverting release notes when a paid carrier invoice, or a release note on it, is deleted</td><td class="num">1.5</td><td class="num">R 900</td></tr>
-      <tr><td>Testing</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
+      <tr><td>Testing</td><td class="num">3</td><td class="num">R 1,800</td></tr>
 
-      <tr class="phase"><td>Phase 3. Statement and go-live</td><td class="num">10.5</td><td class="num">R 6,300</td></tr>
-      <tr><td>Printable reconciliation statement</td><td class="num">3</td><td class="num">R 1,800</td></tr>
+      <tr class="phase"><td>Phase 3. Statement and go-live</td><td class="num">7</td><td class="num">R 4,200</td></tr>
+      <tr><td>Printable reconciliation statement</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
       <tr><td>User guide update</td><td class="num">1</td><td class="num">R 600</td></tr>
-      <tr><td>User acceptance testing, deployment and go-live support</td><td class="num">6.5</td><td class="num">R 3,900</td></tr>
+      <tr><td>User acceptance testing, deployment and go-live support</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
 
       <tr class="phase"><td>Estimate before discount</td><td class="num">54</td><td class="num">R 32,400</td></tr>
       <tr><td>Discount</td><td class="num"></td><td class="num">– R 17,400</td></tr>
@@ -624,6 +734,30 @@ a { color: var(--accent); }
 </section>
 
 <p class="foot">Carrier Payments &amp; Reconciliation · Version 1.0 · 21 October 2026 · Prepared for Container Deals CC by Jacques Ramsden</p>
+<script>
+/* Label every table cell with its column heading so rows can stack as cards on a phone. Without this script the tables simply scroll sideways. */
+(function () {
+  document.querySelectorAll('table').forEach(function (t) {
+    if (t.closest('.paper')) return;
+    var heads = [].map.call(t.querySelectorAll('thead th'), function (th) { return th.textContent.trim(); });
+    if (!heads.length) return;
+    t.classList.add('rt');
+    t.querySelectorAll('tbody tr').forEach(function (tr) {
+      var col = 0, leadSet = false;
+      [].forEach.call(tr.children, function (td) {
+        var label = heads[col] || '';
+        var text = td.textContent.trim();
+        td.setAttribute('data-label', label);
+        if (!text && !td.querySelector('.btn, .box')) td.classList.add('empty');
+        else if (!label) td.classList.add('nolabel');
+        else if (!leadSet) { td.classList.add('lead'); leadSet = true; }
+        else if (text.length > 48) td.classList.add('long');
+        col += td.colSpan || 1;
+      });
+    });
+  });
+})();
+</script>
 </div>
 
 </body></html>
