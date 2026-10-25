@@ -222,8 +222,8 @@ a { color: var(--accent); }
   <div class="meta">
     <div><span class="label">Prepared for</span><b>Container Deals CC</b></div>
     <div><span class="label">Prepared by</span><b>Jacques Ramsden</b></div>
-    <div><span class="label">Date</span><b>22 October 2026</b></div>
-    <div><span class="label">Version</span><b>1.0</b></div>
+    <div><span class="label">Date</span><b>25 October 2026</b></div>
+    <div><span class="label">Version</span><b>1.1</b></div>
   </div>
 </header>
 
@@ -231,16 +231,17 @@ a { color: var(--accent); }
   <h2>The proposal in brief</h2>
   <div class="prose">
     <p>Today each carrier statement is typed into an Excel reconciliation by hand, and "mark as paid" is clicked on individual release notes. A payment is made against a carrier invoice, not a release note, so the two never line up cleanly.</p>
-    <p>We propose a new <b>Carrier Invoices</b> screen where each carrier invoice is captured once, and a new <b>Carrier Payments</b> screen that works like a statement of what Container Deals owes each carrier. It shows what has been invoiced, what has been paid and what is still outstanding, month by month. Payments are ticked off on that screen, and the "Mark as Paid" button on the release note goes away.</p>
+    <p>We propose a new <b>Carrier Invoices</b> screen where each carrier invoice is captured once, and a new <b>Carrier Payments</b> screen that works like a statement of what Container Deals owes each carrier. It shows what has been invoiced, what has been paid and what is still outstanding, month by month. Payments are ticked off on that screen, and the "Mark as Paid" button on the release note goes away. If a carrier bills more than the system holds, you record credits against the invoice, each with a reason, and only the amount due is paid.</p>
   </div>
   <div class="glance">
     <div><span class="label">Phases</span><span class="big">3</span></div>
-    <div><span class="label">Estimated effort</span><span class="big">54 h</span></div>
+    <div><span class="label">Estimated effort</span><span class="big">67 h</span></div>
     <div><span class="label">Rate</span><span class="big">R600<small style="font-size:1rem"> /h</small></span></div>
-    <div><span class="label">Estimate</span><span class="big">R32,400</span></div>
-    <div><span class="label">Discount</span><span class="big">– R17,400</span></div>
-    <div><span class="label">Total after discount</span><span class="big accent">R15,000</span></div>
+    <div><span class="label">Estimate</span><span class="big">R40,200</span></div>
+    <div><span class="label">Discount</span><span class="big">– R22,800 <small style="font-size:1rem">(38 h · 57% off)</small></span></div>
+    <div><span class="label">Total after discount</span><span class="big accent">R17,400</span></div>
   </div>
+  <p style="color:var(--muted);font-size:.9rem;max-width:68ch"><b>Changes from version 1.0:</b> version 1.1 adds credits on carrier invoices, carrier statements (print, download and email) and menu changes, which is 13 additional hours (R7,800) on top of version 1.0's 54 hours. In keeping with our long working relationship, we are discounting 9 of those 13 hours (R5,400), so only 4 hours (R2,400) are billed. Together with the discount already in version 1.0, the total after discount moves from R15,000 to R17,400.</p>
 </section>
 
 <section id="change">
@@ -260,6 +261,7 @@ a { color: var(--accent); }
       <ul>
         <li>Each carrier invoice is captured once, and the system checks it against the containers you authorised.</li>
         <li>A wrong number or a wrong amount is rejected immediately, with a clear message.</li>
+        <li>If a carrier bills more than the system holds, you add credits with a reason when you capture the invoice, so what you owe matches your records.</li>
         <li>Payment is recorded per carrier invoice, in one place, after you pay.</li>
         <li>Invoiced, paid and outstanding are always up to date per carrier and per month, with a printable statement.</li>
       </ul>
@@ -273,21 +275,22 @@ a { color: var(--accent); }
   <div class="flow-title"><h3>Flow 1. Capture a carrier invoice</h3><span class="label">Carrier Invoices screen</span></div>
   <div class="flow">
     <div class="step"><b>Invoice arrives</b><p>The carrier's tax invoice arrives by email or on paper.</p></div>
-    <div class="step"><b>Enter the invoice</b><p>Choose the carrier. Enter the invoice number exactly as printed, the invoice date and the invoice total including VAT.</p></div>
-    <div class="step"><b>The system checks</b><p>Are there authorised containers for this carrier with this invoice number? Once VAT is added to their fees at the current system rate, does the result equal the invoice total entered? Has it been captured already?</p>
+    <div class="step"><b>Containers are authorised</b><p>The release note containers are authorised using the details on the invoice.</p></div>
+    <div class="step"><b>Enter the invoice</b><p>Choose the carrier. Enter the invoice number exactly as printed, the invoice date and the invoice total including VAT. If the carrier has billed more than the system holds, add one or more credits, each with a reason. Non-admin users can do this once they have finished authorising the invoices on the containers.</p></div>
+    <div class="step"><b>The system checks</b><p>Are there authorised containers for this carrier with this invoice number? Once VAT is added to their fees at the current system rate, does the result equal the invoice total less any credits? Has it been captured already?</p>
       <div class="fail">If any check fails, nothing is saved and the message says why.</div></div>
-    <div class="step"><b>Saved</b><p>The invoice is saved with the total exactly as entered. The invoice date and the cut-off day in System Settings decide which month's list it goes on.</p>
+    <div class="step"><b>Saved</b><p>The invoice is saved with the total exactly as entered, together with its credits. The amount due is the total less the credits. The invoice date and the cut-off day in System Settings decide which month's list it goes on.</p>
       <div class="good">The invoice now counts as owed.</div></div>
   </div>
 
   <div class="flow-title"><h3>Flow 2. Pay and reconcile for the month</h3><span class="label">Carrier Payments screen</span></div>
   <div class="flow">
-    <div class="step"><b>Open the month</b><p>Pick the carrier and the month. A month ends on the cut-off day set in System Settings. See invoiced, paid, outstanding, plus anything brought forward from earlier months.</p></div>
-    <div class="step"><b>Compare to the statement</b><p>Check the list against the carrier's emailed statement. Anything authorised but not yet captured is listed separately.</p></div>
-    <div class="step"><b>Pay in your bank</b><p>Make the EFT as you do today. The system does not move money.</p></div>
+    <div class="step"><b>Open the carrier</b><p>On Carrier Statements (under Reports), pick the month and click Open on the carrier. The Carrier Payments screen shows that carrier for that month. A month runs from the day after the cut-off day in the previous month to the cut-off day in the selected month, both days included, so with a cut-off of 25, August is 26 July to 25 August. See invoiced, credits, paid, outstanding, plus anything brought forward from earlier months.</p></div>
+    <div class="step"><b>Compare to the statement</b><p>Check the list against the carrier's emailed statement. If an invoice is missing here, look for it under "Authorised but not yet captured" on the Carrier Invoices screen and capture it first.</p></div>
+    <div class="step"><b>Pay in your bank</b><p>Pay the amount due, which is the invoice total less any credits, by EFT as you do today. The system does not move money.</p></div>
     <div class="step"><b>Mark as paid</b><p>Tick the invoices you paid, enter the payment date and an optional bank reference, and confirm.</p></div>
     <div class="step"><b>Totals update</b><p>The invoices stay on the month, now marked Paid with their payment date. Paid and outstanding totals update straight away.</p></div>
-    <div class="step"><b>Print the statement</b><p>Print the reconciliation for the carrier and month, laid out like your current Excel sheet.</p></div>
+    <div class="step"><b>Print, download or email</b><p>Print the reconciliation for the carrier and month, laid out like your current Excel sheet, or download it as a PDF or email it to the carrier. On Carrier Statements, Print All and Download All PDFs do every carrier with an amount owing in one go, each starting on a new page.</p></div>
   </div>
 
   <div class="flow-title"><h3>Flow 3. Release note status follows the payment</h3><span class="label">Automatic</span></div>
@@ -303,10 +306,10 @@ a { color: var(--accent); }
 
 <section id="screens">
   <h2>Screen mockups</h2>
-  <p class="prose">These show layout and behaviour. Invoice totals are taken from the RBK Trading statement for 31 August 2026. The container fees behind them are worked back from those totals at 15% VAT. Container numbers are placeholders. The month views use the default cut-off, which is the last day of the month. Screen 7 shows how a cut-off day moves invoices to the next month. Final styling will match the rest of the system.</p>
+  <p class="prose">These show layout and behaviour. Invoice totals are taken from the RBK Trading statement for 31 August 2026. The container fees behind them are worked back from those totals at 15% VAT. Container numbers are placeholders. The month views use the default cut-off, which is the last day of the month, so their periods read as whole calendar months. Screen 7 shows how a cut-off day moves invoices to the next month and how the period then reads on the statements. Final styling will match the rest of the system.</p>
 
   <!-- Screen 1 -->
-  <div class="cap"><span class="label">Screen 1</span><h3>Capture a carrier invoice</h3><p>A short form. The panel on the right checks the invoice against your authorised containers before anything is saved.</p></div>
+  <div class="cap"><span class="label">Screen 1</span><h3>Capture a carrier invoice</h3><p>A short form. The panel on the right checks the invoice against your authorised containers before anything is saved. If the carrier has billed more than the system holds, add credits (see the credit steps just below).</p></div>
   <div class="screen">
     <div class="screen-bar"><span>Carrier Invoices › New</span><span class="tag">Mockup</span></div>
     <div class="screen-body">
@@ -319,12 +322,11 @@ a { color: var(--accent); }
             <div class="field"><span>Invoice date</span><div class="input">25/08/2026 <small>▾</small></div></div>
             <div class="field"><span>Invoice total incl. VAT</span><div class="input num">R 4,370.00</div></div>
           </div>
-          <div class="btns"><span class="btn primary">Capture invoice</span><span class="btn">Cancel</span></div>
+          <div class="btns"><span class="btn">+ Add credit</span><span class="btn primary">Capture invoice</span><span class="btn">Cancel</span></div>
         </div>
         <div class="check">
           <span class="label">System check</span>
           <div class="row"><span>Authorised containers found</span><span><b>2</b> on 1 release note <span class="tick">✓</span></span></div>
-          <div class="row"><span>Already captured?</span><span>No <span class="tick">✓</span></span></div>
           <div class="row"><span>Sum of their fees (excl. VAT)</span><span class="num">R 3,800.00</span></div>
           <div class="row"><span>VAT at 15% (current system rate)</span><span class="num">R 570.00</span></div>
           <div class="row total"><span>Expected invoice total</span><span class="num">R 4,370.00 <span class="tick">✓ matches</span></span></div>
@@ -339,7 +341,7 @@ a { color: var(--accent); }
     </div>
     <div>
       <span class="label">If the amount is wrong</span>
-      <div class="alert bad"><b>The invoice amount does not match the sum of the authorised containers for invoice number IO000148.</b><span>You entered R 4,400.00. The 2 authorised containers total R 3,800.00 plus R 570.00 VAT, which is R 4,370.00.</span></div>
+      <div class="alert bad"><b>The invoice amount less credits does not match the sum of the authorised containers for invoice number IO000148.</b><span>You entered R 4,400.00 with no credits. The 2 authorised containers total R 3,800.00 plus R 570.00 VAT, which is R 4,370.00. The difference is R 30.00.</span></div>
     </div>
     <div>
       <span class="label">If it was captured before</span>
@@ -347,60 +349,107 @@ a { color: var(--accent); }
     </div>
   </div>
 
+  <!-- Screen 1: credits -->
+  <div class="cap"><span class="label">Screen 1, continued · Phase 1</span><h3>Adding credits when the invoice does not match</h3><p>When the carrier has billed more than the system holds, for example because a container was already billed on an earlier invoice, add a credit for each part, with a reason. The credits are deducted from the invoice total before it is checked, and the amount due is what is left. The next three mockups show the steps in order.</p></div>
+
+  <div class="cap"><span class="label">Screen 1, credits step 1</span><h3>The invoice does not match</h3><p>The invoice total entered is higher than the system holds for the authorised containers. The system check shows the difference, and the invoice cannot be captured yet. Click + Add credit.</p></div>
+  <div class="screen">
+    <div class="screen-bar"><span>Carrier Invoices › New</span><span class="tag">Mockup</span></div>
+    <div class="screen-body">
+      <div class="screen-title"><h3>Capture Carrier Invoice</h3></div>
+      <div class="two">
+        <div style="display:grid;gap:.8rem;align-content:start">
+          <div class="fields">
+            <div class="field"><span>Carrier</span><div class="input">RBK Trading <small>▾</small></div></div>
+            <div class="field"><span>Invoice number (as printed)</span><div class="input mono">IO000263</div></div>
+            <div class="field"><span>Invoice date</span><div class="input">03/09/2026 <small>▾</small></div></div>
+            <div class="field"><span>Invoice total incl. VAT</span><div class="input num">R 12,500.00</div></div>
+          </div>
+          <span class="label">Credits</span>
+          <div style="color:var(--muted)">No credits added.</div>
+          <div class="alert warn"><b>Difference R 1,460.00</b><span>The invoice total is R 1,460.00 more than the system holds for these containers (R 11,040.00). Add a credit if the carrier has billed more than the system holds.</span></div>
+          <div class="btns"><span class="btn">+ Add credit</span><span class="btn primary off">Capture invoice</span><span class="btn">Cancel</span></div>
+        </div>
+        <div class="check">
+          <span class="label">System check</span>
+          <div class="row"><span>Authorised containers found</span><span><b>3</b> on 2 release notes <span class="tick">✓</span></span></div>
+          <div class="row"><span>Sum of their fees (excl. VAT)</span><span class="num">R 9,600.00</span></div>
+          <div class="row"><span>VAT at 15% (current system rate)</span><span class="num">R 1,440.00</span></div>
+          <div class="row"><span>Expected invoice total</span><span class="num">R 11,040.00</span></div>
+          <div class="row"><span>Invoice total entered</span><span class="num">R 12,500.00</span></div>
+          <div class="row"><span>Less credits</span><span class="num">– R 0.00</span></div>
+          <div class="row total"><span>Amount due</span><span class="num">R 12,500.00 <span style="color:var(--bad);font-weight:700">✗ does not match</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cap"><span class="label">Screen 1, credits step 2</span><h3>Add credit</h3><p>Clicking + Add credit opens this dialog. Enter the amount including VAT and the reason, which is required. The amount starts at the remaining difference and can be changed. Add as many credits as you need, one dialog at a time.</p></div>
+  <div class="dim"><div class="modal">
+    <h3>Add credit</h3>
+    <div class="fields">
+      <div class="field"><span>Amount (incl. VAT)</span><div class="input focus num">R 1,000.00</div></div>
+      <div class="field"><span>Reason (required)</span><div class="input">Container already billed on IO000187</div></div>
+    </div>
+    <div class="btns"><span class="btn primary">Add credit</span><span class="btn">Cancel</span></div>
+  </div></div>
+
+  <div class="cap"><span class="label">Screen 1, credits step 3</span><h3>Credits added, invoice matches</h3><p>Each credit appears in the list and can be edited or removed. Once the invoice total less the credits equals what the system holds, the check shows a match and the invoice can be captured. Here a second credit has been added.</p></div>
+  <div class="screen">
+    <div class="screen-bar"><span>Carrier Invoices › New</span><span class="tag">Mockup</span></div>
+    <div class="screen-body">
+      <div class="screen-title"><h3>Capture Carrier Invoice</h3></div>
+      <div class="two">
+        <div style="display:grid;gap:.8rem;align-content:start">
+          <div class="fields">
+            <div class="field"><span>Carrier</span><div class="input">RBK Trading <small>▾</small></div></div>
+            <div class="field"><span>Invoice number (as printed)</span><div class="input mono">IO000263</div></div>
+            <div class="field"><span>Invoice date</span><div class="input">03/09/2026 <small>▾</small></div></div>
+            <div class="field"><span>Invoice total incl. VAT</span><div class="input num">R 12,500.00</div></div>
+          </div>
+          <span class="label">Credits</span>
+          <div class="scroll"><table>
+            <thead><tr><th class="num">Amount (incl. VAT)</th><th>Reason</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td class="num">1,000.00</td><td>Container already billed on IO000187</td><td><div class="btns"><span class="btn sm">Edit</span><span class="btn sm danger">Remove</span></div></td></tr>
+              <tr><td class="num">460.00</td><td>Fuel levy charged in error</td><td><div class="btns"><span class="btn sm">Edit</span><span class="btn sm danger">Remove</span></div></td></tr>
+              <tr class="tot"><td class="num">1,460.00</td><td>Total credits</td><td></td></tr>
+            </tbody>
+          </table></div>
+          <div class="btns"><span class="btn">+ Add credit</span><span class="btn primary">Capture invoice</span><span class="btn">Cancel</span></div>
+        </div>
+        <div class="check">
+          <span class="label">System check</span>
+          <div class="row"><span>Authorised containers found</span><span><b>3</b> on 2 release notes <span class="tick">✓</span></span></div>
+          <div class="row"><span>Sum of their fees (excl. VAT)</span><span class="num">R 9,600.00</span></div>
+          <div class="row"><span>VAT at 15% (current system rate)</span><span class="num">R 1,440.00</span></div>
+          <div class="row"><span>Expected invoice total</span><span class="num">R 11,040.00</span></div>
+          <div class="row"><span>Invoice total entered</span><span class="num">R 12,500.00</span></div>
+          <div class="row"><span>Less credits</span><span class="num">– R 1,460.00</span></div>
+          <div class="row total"><span>Amount due</span><span class="num">R 11,040.00 <span class="tick">✓ matches</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Screen 2 -->
-  <div class="cap"><span class="label">Screen 2</span><h3>Carrier invoice list</h3><p>Every captured invoice, filterable by carrier, month and status. Edit opens the capture form with the invoice filled in, and all the same checks run again on save. Delete shows a warning of what will be affected first (see Screen 8) and can only be done by the Superuser account, as for invoices and release notes elsewhere in the system. Once an invoice is marked as paid, Edit is switched off (greyed out below). To change it, reverse the payment first.</p></div>
+  <div class="cap"><span class="label">Screen 2</span><h3>Carrier invoice list</h3><p>Captured invoices that have not been paid yet, filterable by carrier. There is no month filter, because the list always shows every invoice that is still unpaid. Once an invoice is marked as paid it leaves this list and is shown on Carrier Payments. Edit opens the capture form with the invoice and its credits filled in, and all the same checks run again on save. Delete shows a warning of what will be affected first (see Screen 8) and can only be done by the Superuser account, as for invoices and release notes elsewhere in the system. To change an invoice that has been paid, reverse the payment first, which puts it back on this list. Click the credits figure to see the reasons. Below the list, "Authorised but not yet captured" shows the invoice numbers that are ready to capture, with a button to start capturing each one. Non-admin users can capture carrier invoices once they have finished authorising the invoices on the containers. Editing a carrier invoice is limited to administrators.</p></div>
   <div class="screen">
     <div class="screen-bar"><span>Carrier Invoices</span><span class="tag">Mockup</span></div>
     <div class="screen-body">
       <div class="screen-title"><h3>Carrier Invoices</h3><span class="btn primary">+ Capture invoice</span></div>
       <div class="fields">
         <div class="field"><span>Carrier</span><div class="input">RBK Trading <small>▾</small></div></div>
-        <div class="field"><span>Month</span><div class="input">August 2026 <small>▾</small></div></div>
-        <div class="field"><span>Status</span><div class="input">All <small>▾</small></div></div>
       </div>
       <div class="scroll"><table>
-        <thead><tr><th>Invoice no.</th><th>Invoice date</th><th>Release notes</th><th class="num">Invoice total (incl. VAT)</th><th>Status</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Invoice no.</th><th>Invoice date</th><th>Release notes</th><th class="num">Invoice total (incl. VAT)</th><th class="num">Credits</th><th class="num">Amount due</th><th>Actions</th></tr></thead>
         <tbody>
-          <tr><td class="mono">IO000148</td><td>25/08/2026</td><td>RN-1042</td><td class="num">4,370.00</td><td><span class="pill ok">Paid</span></td><td><div class="btns"><span class="btn sm off">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
-          <tr><td class="mono">IO000149</td><td>25/08/2026</td><td>RN-1043</td><td class="num">7,360.00</td><td><span class="pill ok">Paid</span></td><td><div class="btns"><span class="btn sm off">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
-          <tr><td class="mono">IO000187</td><td>26/08/2026</td><td>RN-1051, RN-1052</td><td class="num">24,150.00</td><td><span class="pill ok">Paid</span></td><td><div class="btns"><span class="btn sm off">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
-          <tr><td class="mono">IO000222</td><td>28/08/2026</td><td>RN-1060</td><td class="num">8,050.00</td><td><span class="pill ok">Paid</span></td><td><div class="btns"><span class="btn sm off">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
-          <tr><td class="mono">IO000251</td><td>31/08/2026</td><td>RN-1068</td><td class="num">12,075.00</td><td><span class="pill warn">Unpaid</span></td><td><div class="btns"><span class="btn sm">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr><td class="mono">IO000251</td><td>31/08/2026</td><td>RN-1068</td><td class="num">12,075.00</td><td class="num">–</td><td class="num">12,075.00</td><td><div class="btns"><span class="btn sm">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr><td class="mono">IO000259</td><td>02/09/2026</td><td>RN-1066, RN-1067</td><td class="num">9,800.00</td><td class="num">750.00 <small style="color:var(--muted)">1 credit</small></td><td class="num">9,050.00</td><td><div class="btns"><span class="btn sm">Edit</span><span class="btn sm danger">Delete</span></div></td></tr>
         </tbody>
       </table></div>
-    </div>
-  </div>
-
-  <!-- Screen 3 -->
-  <div class="cap"><span class="label">Screen 3</span><h3>Carrier Payments</h3><p>The main screen: money Container Deals owes a carrier for a month. It works like a statement, but for payables. Tick the invoices you have paid and mark them paid. They stay on the page.</p></div>
-  <div class="screen">
-    <div class="screen-bar"><span>Carrier Payments</span><span class="tag">Mockup</span></div>
-    <div class="screen-body">
-      <div class="screen-title"><h3>Carrier Payments</h3><span class="btn">Print statement</span></div>
-      <div class="fields">
-        <div class="field"><span>Carrier</span><div class="input">RBK Trading <small>▾</small></div></div>
-        <div class="field"><span>Month</span><div class="input">August 2026 <small>▾</small></div><small style="color:var(--muted)">Period: 01/08/2026 to 31/08/2026</small></div>
-      </div>
-      <div class="sumstrip">
-        <div><span class="label">Brought forward</span><span class="v">R 0.00</span></div>
-        <div><span class="label">Invoiced in month</span><span class="v">R 56,005.00</span></div>
-        <div><span class="label">Paid</span><span class="v ok">R 43,930.00</span></div>
-        <div><span class="label">Outstanding</span><span class="v warn">R 12,075.00</span></div>
-      </div>
-      <div class="scroll"><table>
-        <thead><tr><th></th><th>Invoice no.</th><th>Invoice date</th><th class="num">Invoice total (incl. VAT)</th><th>Status</th><th>Paid on</th></tr></thead>
-        <tbody>
-          <tr><td><span class="box lock"></span></td><td class="mono">IO000148</td><td>25/08/2026</td><td class="num">4,370.00</td><td><span class="pill ok">Paid</span></td><td>25/08/2026</td></tr>
-          <tr><td><span class="box lock"></span></td><td class="mono">IO000149</td><td>25/08/2026</td><td class="num">7,360.00</td><td><span class="pill ok">Paid</span></td><td>25/08/2026</td></tr>
-          <tr><td><span class="box lock"></span></td><td class="mono">IO000187</td><td>26/08/2026</td><td class="num">24,150.00</td><td><span class="pill ok">Paid</span></td><td>26/08/2026</td></tr>
-          <tr><td><span class="box lock"></span></td><td class="mono">IO000222</td><td>28/08/2026</td><td class="num">8,050.00</td><td><span class="pill ok">Paid</span></td><td>28/08/2026</td></tr>
-          <tr class="sel"><td><span class="box on"></span></td><td class="mono">IO000251</td><td>31/08/2026</td><td class="num">12,075.00</td><td><span class="pill warn">Unpaid</span></td><td>–</td></tr>
-          <tr class="tot"><td></td><td colspan="2">Month total</td><td class="num">56,005.00</td><td colspan="2"></td></tr>
-        </tbody>
-      </table></div>
-      <div class="btns"><span class="btn primary">Mark 1 selected as paid · R 12,075.00</span><span class="btn off">Reverse payment</span></div>
       <div style="display:grid;gap:.5rem">
-        <div><b>Authorised but not yet captured</b><br><span style="color:var(--muted)">Invoice numbers on authorised containers that have no carrier invoice captured yet. These are not included in the totals above.</span></div>
+        <div><b>Authorised but not yet captured</b><br><span style="color:var(--muted)">Invoice numbers on authorised containers that have no carrier invoice captured yet. They are not counted as owed until they are captured.</span></div>
         <div class="scroll"><table>
           <thead><tr><th>Invoice no.</th><th class="num">Containers</th><th class="num">Total (incl. VAT)</th></tr></thead>
           <tbody>
@@ -414,12 +463,45 @@ a { color: var(--accent); }
     </div>
   </div>
 
+  <!-- Screen 3 -->
+  <div class="cap"><span class="label">Screen 3</span><h3>Carrier Payments</h3><p>The main screen: money Container Deals owes one carrier for one month. It opens from Carrier Statements (Open on a carrier's row), so it has no carrier or month pickers and is not in the menu. To look at another carrier or month, go back to Carrier Statements. From here you can print the statement, download it as a PDF or email it to the carrier. It works like a statement, but for payables. Tick the invoices you have paid and mark them paid. They stay on the page. Credits recorded on an invoice reduce the amount due. Paid invoices have a Reverse payment action, and the Superuser account can also delete them from here. This screen is for administrators only.</p></div>
+  <div class="screen">
+    <div class="screen-bar"><span>Carrier Statements › Carrier Payments</span><span class="tag">Mockup</span></div>
+    <div class="screen-body">
+      <div class="screen-title"><h3>Carrier Payments</h3><div class="btns"><span class="btn">Print</span><span class="btn">Download PDF</span><span class="btn">Email statement</span></div></div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center">
+        <b style="font-size:1.1rem">RBK Trading · August 2026</b>
+        <span style="color:var(--muted)">Period: 01/08/2026 to 31/08/2026</span>
+        <span class="btn sm">← Back to Carrier Statements</span>
+      </div>
+      <div class="sumstrip">
+        <div><span class="label">Brought forward</span><span class="v">R 0.00</span></div>
+        <div><span class="label">Invoiced by carrier</span><span class="v">R 56,005.00</span></div>
+        <div><span class="label">Credits</span><span class="v">R 0.00</span></div>
+        <div><span class="label">Paid</span><span class="v ok">R 43,930.00</span></div>
+        <div><span class="label">Outstanding</span><span class="v warn">R 12,075.00</span></div>
+      </div>
+      <div class="scroll"><table>
+        <thead><tr><th></th><th>Invoice no.</th><th>Invoice date</th><th class="num">Invoice total (incl. VAT)</th><th class="num">Credits</th><th class="num">Amount due</th><th>Status</th><th>Paid on</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td><span class="box lock"></span></td><td class="mono">IO000148</td><td>25/08/2026</td><td class="num">4,370.00</td><td class="num">–</td><td class="num">4,370.00</td><td><span class="pill ok">Paid</span></td><td>25/08/2026</td><td><div class="btns"><span class="btn sm">Reverse payment</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr><td><span class="box lock"></span></td><td class="mono">IO000149</td><td>25/08/2026</td><td class="num">7,360.00</td><td class="num">–</td><td class="num">7,360.00</td><td><span class="pill ok">Paid</span></td><td>25/08/2026</td><td><div class="btns"><span class="btn sm">Reverse payment</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr><td><span class="box lock"></span></td><td class="mono">IO000187</td><td>26/08/2026</td><td class="num">24,150.00</td><td class="num">–</td><td class="num">24,150.00</td><td><span class="pill ok">Paid</span></td><td>26/08/2026</td><td><div class="btns"><span class="btn sm">Reverse payment</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr><td><span class="box lock"></span></td><td class="mono">IO000222</td><td>28/08/2026</td><td class="num">8,050.00</td><td class="num">–</td><td class="num">8,050.00</td><td><span class="pill ok">Paid</span></td><td>28/08/2026</td><td><div class="btns"><span class="btn sm">Reverse payment</span><span class="btn sm danger">Delete</span></div></td></tr>
+          <tr class="sel"><td><span class="box on"></span></td><td class="mono">IO000251</td><td>31/08/2026</td><td class="num">12,075.00</td><td class="num">–</td><td class="num">12,075.00</td><td><span class="pill warn">Unpaid</span></td><td>–</td><td></td></tr>
+          <tr class="tot"><td></td><td colspan="2">Month total</td><td class="num">56,005.00</td><td class="num">0.00</td><td class="num">56,005.00</td><td colspan="3"></td></tr>
+        </tbody>
+      </table></div>
+      <div class="btns"><span class="btn primary">Mark 1 selected as paid · R 12,075.00</span></div>
+    </div>
+  </div>
+
   <!-- Screen 4 -->
   <div class="cap"><span class="label">Screen 4</span><h3>Mark as paid</h3><p>After the EFT is made, confirm the payment. The date defaults to today and can be changed.</p></div>
   <div class="dim"><div class="modal">
     <h3>Mark invoices as paid</h3>
     <div class="scroll"><table>
-      <thead><tr><th>Invoice no.</th><th class="num">Total incl. VAT</th></tr></thead>
+      <thead><tr><th>Invoice no.</th><th class="num">Amount due</th></tr></thead>
       <tbody><tr><td class="mono">IO000251</td><td class="num">12,075.00</td></tr><tr class="tot"><td>Total paid</td><td class="num">R 12,075.00</td></tr></tbody>
     </table></div>
     <div class="fields">
@@ -443,13 +525,13 @@ a { color: var(--accent); }
       <div class="screen-bar"><span>Release Note RN-1068 · proposed</span><span class="tag">Mockup</span></div>
       <div class="screen-body">
         <div class="btns"><span class="btn">Edit</span></div>
-        <div class="alert ok"><b>Paid on 09/09/2026</b><span>Carrier invoice IO000251 · RBK Trading · <u>View in Carrier Payments</u></span></div>
+        <div class="alert ok"><b>Paid on 09/09/2026</b><span>Carrier invoice IO000251 · RBK Trading</span></div>
       </div>
     </div>
   </div>
 
   <!-- Screen 6 -->
-  <div class="cap"><span class="label">Screen 6 · Phase 3</span><h3>Printable reconciliation statement</h3><p>Replaces the Excel printout. The same sections, filled in by the system, for the chosen carrier and month. Prints on A4 landscape.</p></div>
+  <div class="cap"><span class="label">Screen 6 · Phase 3</span><h3>Printable reconciliation statement</h3><p>Replaces the Excel printout. The same sections, filled in by the system, for the chosen carrier and month. Prints on A4 landscape. Print, Download PDF and Email statement on Carrier Payments all use this sheet. On Carrier Statements, Print All and Download All PDFs produce one for every carrier with an amount owing, and each carrier starts on a new page.</p></div>
   <div class="alert warn paper-note"><b>Mockup only.</b><span>This is not the final statement. Layout, wording and fields may change before release.</span></div>
   <div class="paper">
     <div class="paper-head">
@@ -464,6 +546,7 @@ a { color: var(--accent); }
             <tr><td>PERIOD</td><td class="num">01.08.2026 – 31.08.2026</td></tr>
             <tr><td>BROUGHT FORWARD</td><td class="num">0.00</td></tr>
             <tr><td>INVOICED THIS MONTH (INCL. VAT)</td><td class="num">56,005.00</td></tr>
+            <tr><td>LESS: CREDITS</td><td class="num">0.00</td></tr>
             <tr><td>LESS: PAYMENTS MADE</td><td class="num">43,930.00</td></tr>
           </tbody>
         </table>
@@ -482,6 +565,9 @@ a { color: var(--accent); }
             <tr><td>28/08/2026</td><td>IO000222</td><td class="num">8,050.00</td></tr>
             <tr class="tot"><td colspan="2"><b>TOTAL PAID</b></td><td class="num"><b>43,930.00</b></td></tr>
           </tbody></table></div>
+        <div><b>CREDITS APPLIED</b>
+          <table><thead><tr><th>Invoice no.</th><th>Reason</th><th class="num">Amount</th></tr></thead>
+          <tbody><tr><td colspan="3">None this month</td></tr></tbody></table></div>
       </div>
     </div>
   </div>
@@ -500,7 +586,7 @@ a { color: var(--accent); }
           </div>
           <span class="label">Carrier invoices</span>
           <div class="field"><span>Carrier invoice cut-off day of month <span class="pill ok">New</span></span><div class="input focus num">25</div><small style="color:var(--muted)">Carrier invoices dated after this day go on the next month's list. Use 31 for normal calendar months. In shorter months the last day of the month is used.</small></div>
-          <div class="field"><span>Carrier payments start date <span class="pill ok">New</span></span><div class="input focus">01/08/2026 <small>▾</small></div><small style="color:var(--muted)">Release notes delivered before this date are left out of "Authorised but not yet captured" and the Carrier Overview. Release notes already marked paid are never listed. Leave empty to include everything.</small></div>
+          <div class="field"><span>Carrier payments start date <span class="pill ok">New</span></span><div class="input focus">01/08/2026 <small>▾</small></div><small style="color:var(--muted)">Release notes delivered before this date are left out of "Authorised but not yet captured" and Carrier Statements. Release notes already marked paid are never listed. Leave empty to include everything.</small></div>
           <div class="btns"><span class="btn primary">Save settings</span></div>
         </div>
         <div class="check">
@@ -520,8 +606,17 @@ a { color: var(--accent); }
     </div>
   </div>
 
+  <div class="cap"><span class="label">Screen 7, continued</span><h3>The period on the statements</h3><p>The period always follows the cut-off day. With a cut-off day of 25, selecting August 2026 runs from 26 July 2026 to 25 August 2026, and both of those days are included. The same period is shown wherever the month appears on a statement.</p></div>
+  <div class="check">
+    <span class="label">Cut-off day 25, month August 2026</span>
+    <div class="row"><span>Carrier Statements</span><span>Period: 26/07/2026 to 25/08/2026</span></div>
+    <div class="row"><span>Carrier Payments</span><span>Period: 26/07/2026 to 25/08/2026</span></div>
+    <div class="row"><span>Printed, downloaded and emailed statement</span><span>PERIOD 26.07.2026 – 25.08.2026</span></div>
+    <div class="row"><span>Invoices dated 26/07/2026 to 25/08/2026</span><span>On this month's list</span></div>
+  </div>
+
   <!-- Screen 8 -->
-  <div class="cap"><span class="label">Screen 8 · Phase 1 and 2</span><h3>Deleting a carrier invoice</h3><p>Uses the same warning dialog as deleting an invoice or release note today, and like those it can only be done by the Superuser account. It lists everything that will be affected before anything is removed. Here a paid invoice covering two release notes is being deleted.</p></div>
+  <div class="cap"><span class="label">Screen 8 · Phase 1 and 2</span><h3>Deleting a carrier invoice</h3><p>Uses the same warning dialog as deleting an invoice or release note today, and like those it can only be done by the Superuser account. It lists everything that will be affected before anything is removed. Here a paid invoice covering two release notes is being deleted from the Carrier Payments screen, where paid invoices are shown. If the invoice has credits, the dialog also lists them, for example "The 2 credits recorded on this invoice (R 1,460.00) will be removed too."</p></div>
   <div class="dim"><div class="modal" style="max-width:600px">
     <h3>Delete Carrier Invoice IO000187</h3>
     <div class="alert bad"><b>This action is permanent</b><span>Deleting carrier invoice IO000187 cannot be undone. If this data is needed again, it will have to be re-captured from scratch.</span></div>
@@ -557,35 +652,36 @@ a { color: var(--accent); }
   </div></div>
 
   <!-- Screen 10 -->
-  <div class="cap"><span class="label">Screen 10 · Phase 2</span><h3>Carrier Overview</h3><p>One line per carrier for the chosen month, so you can see what is owed across all carriers at a glance. Open a line to go straight to that carrier's Carrier Payments screen. Administrators only, like Carrier Payments. The carriers other than RBK Trading are examples.</p></div>
+  <div class="cap"><span class="label">Screen 10 · Phases 2 and 3</span><h3>Carrier Statements</h3><p>The carrier equivalent of Operator Statements, under Reports. One line per carrier for the chosen month, so you can see what is owed across all carriers at a glance. Print All and Download All PDFs (a zip) do every carrier with an amount owing, each starting on a new page, as the operator statements do. Open a line to go to that carrier's Carrier Payments screen for the month shown. This is the only way into Carrier Payments. The whole screen, including Open, is for administrators only. The carriers other than RBK Trading are examples.</p></div>
   <div class="screen">
-    <div class="screen-bar"><span>Carrier Overview</span><span class="tag">Mockup</span></div>
+    <div class="screen-bar"><span>Reports › Carrier Statements</span><span class="tag">Mockup</span></div>
     <div class="screen-body">
-      <div class="screen-title"><h3>Carrier Overview</h3></div>
+      <div class="screen-title"><h3>Carrier Statements</h3><div class="btns"><span class="btn">Download All PDFs</span><span class="btn">Print All</span></div></div>
       <div class="fields">
         <div class="field"><span>Month</span><div class="input">August 2026 <small>▾</small></div><small style="color:var(--muted)">Period: 01/08/2026 to 31/08/2026</small></div>
       </div>
       <div class="sumstrip">
         <div><span class="label">Brought forward</span><span class="v">R 8,740.00</span></div>
-        <div><span class="label">Invoiced in month</span><span class="v">R 105,915.00</span></div>
+        <div><span class="label">Invoiced by carriers</span><span class="v">R 105,915.00</span></div>
+        <div><span class="label">Credits</span><span class="v">R 1,460.00</span></div>
         <div><span class="label">Paid</span><span class="v ok">R 75,210.00</span></div>
-        <div><span class="label">Total due</span><span class="v warn">R 39,445.00</span></div>
+        <div><span class="label">Total due</span><span class="v warn">R 37,985.00</span></div>
       </div>
       <div class="scroll"><table>
-        <thead><tr><th>Carrier</th><th class="num">Brought forward</th><th class="num">Invoiced</th><th class="num">Paid</th><th class="num">Outstanding</th><th class="num">Total due</th><th>Awaiting capture</th><th></th></tr></thead>
+        <thead><tr><th>Carrier</th><th class="num">Brought forward</th><th class="num">Invoiced</th><th class="num">Credits</th><th class="num">Paid</th><th class="num">Outstanding</th><th class="num">Total due</th><th>Awaiting capture</th><th></th></tr></thead>
         <tbody>
-          <tr><td>RBK Trading</td><td class="num">0.00</td><td class="num">56,005.00</td><td class="num">43,930.00</td><td class="num">12,075.00</td><td class="num">12,075.00</td><td>2 invoices · R 17,020.00</td><td><span class="btn sm">Open</span></td></tr>
-          <tr><td>Carrier B</td><td class="num">8,740.00</td><td class="num">31,280.00</td><td class="num">31,280.00</td><td class="num">0.00</td><td class="num">8,740.00</td><td>None</td><td><span class="btn sm">Open</span></td></tr>
-          <tr><td>Carrier C</td><td class="num">0.00</td><td class="num">18,630.00</td><td class="num">0.00</td><td class="num">18,630.00</td><td class="num">18,630.00</td><td>1 invoice · R 6,900.00</td><td><span class="btn sm">Open</span></td></tr>
-          <tr class="tot"><td>All carriers</td><td class="num">8,740.00</td><td class="num">105,915.00</td><td class="num">75,210.00</td><td class="num">30,705.00</td><td class="num">39,445.00</td><td>3 invoices · R 23,920.00</td><td></td></tr>
+          <tr><td>RBK Trading</td><td class="num">0.00</td><td class="num">56,005.00</td><td class="num">0.00</td><td class="num">43,930.00</td><td class="num">12,075.00</td><td class="num">12,075.00</td><td>2 invoices · R 17,020.00</td><td><span class="btn sm">Open</span></td></tr>
+          <tr><td>Carrier B</td><td class="num">8,740.00</td><td class="num">31,280.00</td><td class="num">0.00</td><td class="num">31,280.00</td><td class="num">0.00</td><td class="num">8,740.00</td><td>None</td><td><span class="btn sm">Open</span></td></tr>
+          <tr><td>Carrier C</td><td class="num">0.00</td><td class="num">18,630.00</td><td class="num">1,460.00</td><td class="num">0.00</td><td class="num">17,170.00</td><td class="num">17,170.00</td><td>1 invoice · R 6,900.00</td><td><span class="btn sm">Open</span></td></tr>
+          <tr class="tot"><td>All carriers</td><td class="num">8,740.00</td><td class="num">105,915.00</td><td class="num">1,460.00</td><td class="num">75,210.00</td><td class="num">29,245.00</td><td class="num">37,985.00</td><td>3 invoices · R 23,920.00</td><td></td></tr>
         </tbody>
       </table></div>
-      <p style="color:var(--muted);font-size:.88rem">Total due is brought forward plus outstanding for the month. "Awaiting capture" counts invoice numbers on authorised containers that have no carrier invoice captured yet. They are not included in the other figures.</p>
+      <p style="color:var(--muted);font-size:.88rem">Outstanding is invoiced less credits less paid. Total due is brought forward plus outstanding for the month. "Awaiting capture" counts invoice numbers on authorised containers that have no carrier invoice captured yet. They are not included in the other figures.</p>
     </div>
   </div>
 
   <!-- Screen 11 -->
-  <div class="cap"><span class="label">Screen 11 · Phases 1 and 2</span><h3>Navigation menu</h3><p>A new "Carrier Payments" group in the sidebar, for administrators only, between Credit Notes and Maintenance. It sits with the other money items. No extra PIN is asked. The capture and edit forms are reached from Carrier Invoices, and buttons link the pages together.</p></div>
+  <div class="cap"><span class="label">Screen 11 · Phases 1 and 2</span><h3>Navigation menu</h3><p>The sidebar gets one new item, Carrier Invoices, shown to every user so that non-admin users can capture invoices. It sits after Credit Notes. The existing Invoices item is renamed Operator Invoices. The carrier overview becomes Carrier Statements, under Reports and for administrators only, and the existing Statements item is renamed Operator Statements. Carrier Payments is not in the menu, it opens from Carrier Statements. No extra PIN is asked. The capture and edit forms are reached from Carrier Invoices, and buttons link the pages together.</p></div>
   <div class="two">
     <div class="screen">
       <div class="screen-bar"><span>Sidebar (administrator)</span><span class="tag">Mockup</span></div>
@@ -594,27 +690,53 @@ a { color: var(--accent); }
           <div>Dashboard</div>
           <div>Releases</div>
           <div>Release Notes</div>
-          <div>Invoices</div>
+          <div>Operator Invoices <span class="new">Renamed</span></div>
           <div>Demurrage Invoices</div>
           <div>Credit Notes</div>
-          <div class="grp">Carrier Payments <span class="new">New</span></div>
-          <div class="sub">Overview</div>
-          <div class="sub on">Carrier Invoices</div>
-          <div class="sub">Carrier Payments</div>
+          <div class="grp">Carrier Invoices <span class="new">New</span></div>
           <div>Maintenance</div>
           <div>Reports</div>
+          <div class="sub">Financial Summary</div>
+          <div class="sub">Age Analysis</div>
+          <div class="sub">Stock on Hand</div>
+          <div class="sub">Operator Statements <span class="new">Renamed</span></div>
+          <div class="sub on">Carrier Statements <span class="new">New</span></div>
           <div>Admin</div>
         </div>
       </div>
     </div>
     <div class="check">
       <span class="label">How the pages link together</span>
-      <div class="row"><span>Overview, Open</span><span>Carrier Payments for that carrier and month</span></div>
-      <div class="row"><span>Carrier Payments, + Capture carrier invoice</span><span>Capture form with the carrier and invoice number filled in</span></div>
+      <div class="row"><span>Carrier Statements, Open</span><span>Carrier Payments for that carrier and month (the only way in)</span></div>
+      <div class="row"><span>Carrier Payments, Back to Carrier Statements</span><span>Carrier Statements</span></div>
+      <div class="row"><span>Carrier Invoices, Authorised but not yet captured, + Capture carrier invoice</span><span>Capture form with the carrier and invoice number filled in</span></div>
       <div class="row"><span>Carrier Invoices, + Capture invoice or Edit</span><span>Capture / edit form</span></div>
-      <div class="row"><span>Release note, paid via carrier invoice</span><span>Carrier Payments for that invoice's carrier and month</span></div>
       <div class="row"><span>Admin, Settings</span><span>Cut-off day and start date</span></div>
-      <span style="color:var(--muted);font-size:.88rem">The menu highlights Carrier Invoices while you are on its capture and edit pages, and the group opens automatically. The phone menu is the same list.</span>
+      <span style="color:var(--muted);font-size:.88rem">The menu highlights Carrier Invoices while you are on its capture and edit pages, and Carrier Statements while you are on a carrier's Carrier Payments screen. Non-admin users see Carrier Invoices, and under Reports only the reports they can already use.</span>
+    </div>
+  </div>
+
+  <!-- Screen 12 -->
+  <div class="cap"><span class="label">Screen 12 · Phase 3</span><h3>Emailing a carrier statement</h3><p>Works like emailing an operator statement. Each carrier gets a statement message, set once under Maintenance, Carriers, like the one on operators. The Email statement button on Carrier Payments sends the statement as a PDF to the carrier's email address, with that message and your own signature.</p></div>
+  <div class="two">
+    <div class="screen">
+      <div class="screen-bar"><span>Maintenance › Carriers › RBK Trading</span><span class="tag">Mockup</span></div>
+      <div class="screen-body">
+        <div class="fields">
+          <div class="field"><span>Name</span><div class="input">RBK Trading</div></div>
+          <div class="field"><span>Email</span><div class="input">accounts@example.com</div></div>
+        </div>
+        <div class="field"><span>Statement email message <span class="pill ok">New</span></span><div class="input" style="align-items:flex-start;min-height:5rem">Good day, please find attached your statement from Container Deals CC. Please let us know if anything does not match your records.</div></div>
+        <div class="btns"><span class="btn primary">Save</span><span class="btn">Cancel</span></div>
+      </div>
+    </div>
+    <div class="check">
+      <span class="label">When you click Email statement</span>
+      <div class="alert ok"><b>Email sent successfully</b></div>
+      <div class="alert warn"><b>This carrier does not have a statement email message configured.</b><span>Add one under Carriers in Maintenance.</span></div>
+      <div class="alert warn"><b>This carrier does not have an email address on file.</b></div>
+      <div class="alert warn"><b>Add an email address and an email signature to your profile before sending emails.</b></div>
+      <div class="alert warn"><b>Email is not configured.</b><span>Contact an administrator.</span></div>
     </div>
   </div>
 </section>
@@ -625,17 +747,20 @@ a { color: var(--accent); }
     <thead><tr><th>Rule</th><th>What happens</th></tr></thead>
     <tbody>
       <tr><td><b>Invoice number must exist</b></td><td>The number entered must already be on authorised containers for that carrier. If not, capture is refused: "No containers authorised for the invoice number."</td></tr>
-      <tr><td><b>Amount must match</b></td><td>The invoice total entered includes VAT. The system adds up the transporter fees of those containers, adds VAT at the current system rate, and the result must equal the invoice total, to the cent. If not, capture is refused: "The invoice amount does not match the sum of the authorised containers for the invoice number."</td></tr>
+      <tr><td><b>Amount must match</b></td><td>The invoice total entered includes VAT. The system adds up the transporter fees of those containers, adds VAT at the current system rate, and the result must equal the invoice total less any credits, to the cent. If not, capture is refused: "The invoice amount less credits does not match the sum of the authorised containers for the invoice number."</td></tr>
       <tr><td><b>One capture per invoice</b></td><td>A carrier invoice number can be captured once per carrier.</td></tr>
+      <tr><td><b>Credits</b></td><td>An invoice can have any number of credits. Each has an amount greater than zero, including VAT, and a reason, which is required. Credits are deducted from the invoice total before it is checked. The amount due, and the amount marked as paid, is the invoice total less its credits. Credits can be added, changed or removed while the invoice is unpaid and are locked once it is paid. They are removed if the invoice is deleted. An invoice where the carrier billed less than the system holds is still refused.</td></tr>
+      <tr><td><b>Statements</b></td><td>A carrier statement can be printed, downloaded as a PDF or emailed from Carrier Payments, and printed or downloaded for every carrier with an amount owing from Carrier Statements, with each carrier starting on a new page. The email goes to the carrier's email address with the carrier's own statement message, and uses the sender's email address and signature, as the operator statements do. Warnings appear if the carrier has no email address or statement message, or the sender has no email address or signature.</td></tr>
+      <tr><td><b>Carrier Invoices list</b></td><td>Shows every captured invoice that is not yet paid, for all carriers or one carrier, with no month filter. Once an invoice is marked as paid it moves to the Carrier Payments screen, where paid invoices stay for their month. The list also shows "Authorised but not yet captured", so users can capture what is ready.</td></tr>
       <tr><td><b>VAT</b></td><td>VAT is used only for the check above. The captured invoice keeps the total exactly as entered, so a later change to the system VAT rate does not alter captured invoices. Carriers not registered for VAT are checked without VAT.</td></tr>
-      <tr><td><b>Month and cut-off day</b></td><td>The invoice date and the cut-off day in System Settings decide the month's list. An invoice dated on or before the cut-off day goes on that month's list. An invoice dated after it goes on the next month's list. The default cut-off is the last day of the month, which gives normal calendar months. The list is fixed when the invoice is captured. Unpaid invoices from earlier months show as brought forward until paid.</td></tr>
-      <tr><td><b>Start date</b></td><td>The carrier payments start date in System Settings hides history from "Authorised but not yet captured" and the Carrier Overview. Release notes delivered before it are left out, and release notes already marked paid are never listed. It does not hide invoices already captured, and does not stop an invoice being captured. Leave it empty to include everything.</td></tr>
+      <tr><td><b>Month and cut-off day</b></td><td>The invoice date and the cut-off day in System Settings decide the month's list. An invoice dated on or before the cut-off day goes on that month's list. An invoice dated after it goes on the next month's list. The default cut-off is the last day of the month, which gives normal calendar months. A month's period runs from the day after the cut-off day in the previous month to the cut-off day in the selected month, with both days included. With a cut-off of 25, August covers 26 July to 25 August. That period is shown on Carrier Statements, on the Carrier Payments screen, and on the printed, downloaded and emailed statements. The list is fixed when the invoice is captured. Unpaid invoices from earlier months show as brought forward until paid.</td></tr>
+      <tr><td><b>Start date</b></td><td>The carrier payments start date in System Settings hides history from "Authorised but not yet captured" and Carrier Statements. Release notes delivered before it are left out, and release notes already marked paid are never listed. It does not hide invoices already captured, and does not stop an invoice being captured. Leave it empty to include everything.</td></tr>
       <tr><td><b>Locking</b></td><td>Once an invoice is captured, the invoice number and fee on its containers cannot be changed, and no further containers can be given that invoice number. To change them, edit the unpaid carrier invoice (the checks run again) or delete it.</td></tr>
-      <tr><td><b>Payments</b></td><td>Invoices are paid in full. Partial payments are not supported. Once an invoice is marked as paid it cannot be edited, including its invoice number, date and amount. To change it, an administrator reverses the payment first, and who did that and when is recorded.</td></tr>
-      <tr><td><b>Deleting a carrier invoice</b></td><td>Can only be done by the Superuser account, as for invoices today, using the same warning dialog. The dialog lists what will be affected. The carrier invoice is removed, and if it was paid its payment is removed too. Every release note on it moves back to Pending Payment. The containers keep their invoice number, so it returns to "Authorised but not yet captured".</td></tr>
+      <tr><td><b>Payments</b></td><td>Invoices are paid in full. Partial payments are not supported. Once an invoice is marked as paid it cannot be edited, including its invoice number, date, amount and credits. To change it, an administrator reverses the payment first, and who did that and when is recorded.</td></tr>
+      <tr><td><b>Deleting a carrier invoice</b></td><td>Can only be done by the Superuser account, as for invoices today, using the same warning dialog. The dialog lists what will be affected. The carrier invoice is removed with its credits, and if it was paid its payment is removed too. Every release note on it moves back to Pending Payment. The containers keep their invoice number, so it returns to "Authorised but not yet captured".</td></tr>
       <tr><td><b>Deleting a release note on a carrier invoice</b></td><td>Release notes can only be deleted by the Superuser account today, and that does not change. The existing delete dialog warns that the carrier invoice will be removed, and that any other release notes on that invoice will move back to Pending Payment. If the carrier invoice was paid, its payment is removed too.</td></tr>
       <tr><td><b>Charity cargo</b></td><td>Charity cargo containers carry no invoice and never appear in Carrier Payments.</td></tr>
-      <tr><td><b>Access</b></td><td>The Carrier Payments menu and its screens are visible to administrators only, with no extra PIN prompt. Capturing and editing invoices and marking them paid is limited to administrators, the same as "Mark as Paid" today. Deleting a carrier invoice, or a release note on one, can only be done by the Superuser account, as the rest of the system enforces for invoices and release notes.</td></tr>
+      <tr><td><b>Access</b></td><td>Non-admin users can capture carrier invoices, and see the unpaid list and the "Authorised but not yet captured" list, once they have finished authorising the invoices on the containers. Editing a carrier invoice, Carrier Statements, Carrier Payments, emailing and printing statements, and marking invoices paid are limited to administrators, the same as "Mark as Paid" today, with no extra PIN prompt. Carrier Statements, including its Open button, is fully guarded. Deleting a carrier invoice, or a release note on one, can only be done by the Superuser account, as the rest of the system enforces for invoices and release notes.</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -664,19 +789,21 @@ a { color: var(--accent); }
     <div>
       <span class="label">Included</span>
       <ul class="list">
-        <li>Carrier Invoices screen with capture, validation, list, and edit (unpaid only)</li>
+        <li>Carrier Invoices screen with capture, validation, a list of unpaid invoices, the "Authorised but not yet captured" list, and edit. Non-admin users can capture once they have finished authorising the invoices on the containers.</li>
+        <li>Credits on a carrier invoice, each with a reason, deducted before the amount is checked and paid</li>
         <li>Deleting a carrier invoice (Superuser account only), with a warning of what is affected and release notes returned to Pending Payment</li>
         <li>Deleting a release note that is on a carrier invoice, with the same warning</li>
         <li>VAT-inclusive check of the invoice total against the container fees, at the current system rate</li>
         <li>Locking of invoice numbers and fees once captured</li>
         <li>Carrier invoice cut-off day and carrier payments start date settings under System Settings</li>
-        <li>A "Carrier Payments" menu group (Overview, Carrier Invoices, Carrier Payments) for administrators</li>
-        <li>Carrier Payments screen by carrier and month, with brought-forward balances</li>
-        <li>Carrier Overview screen showing every carrier's balance for the month, linking through to each carrier's payments</li>
+        <li>Menu changes: a new Carrier Invoices item for all users, "Invoices" renamed Operator Invoices, "Statements" renamed Operator Statements, and Carrier Statements added under Reports for administrators only. The Carrier Payments screen is not in the menu and opens from Carrier Statements</li>
+        <li>Carrier Payments screen for one carrier and month, opened from Carrier Statements, with brought-forward balances</li>
+        <li>Carrier Statements screen (the carrier equivalent of Operator Statements) showing every carrier's balance for the month, linking through to each carrier's payments</li>
         <li>List of authorised invoice numbers not yet captured</li>
         <li>Mark as paid and reverse payment, with audit trail</li>
         <li>Release note Paid status driven by carrier invoice payments, and removal of the old button</li>
-        <li>Printable reconciliation statement</li>
+        <li>Printable reconciliation statement (A4 landscape), with Print, Download PDF and Email statement on Carrier Payments, and Print All and Download All PDFs on Carrier Statements, as the operator statements have</li>
+        <li>A statement email message on each carrier, set under Maintenance, Carriers, like the one on operators</li>
         <li>Automated tests, user guide update, user acceptance testing and go-live support</li>
       </ul>
     </div>
@@ -688,7 +815,9 @@ a { color: var(--accent); }
         <li>Importing or reading the carrier's emailed statement automatically</li>
         <li>Comparing a carrier's statement total to the system and showing the difference</li>
         <li>Making bank payments from the system</li>
+        <li>Emailing every carrier statement in one go</li>
         <li>Anything new on the Dashboard</li>
+        <li>Carrier invoices for less than the system holds, and credits found after an invoice has been paid</li>
       </ul>
     </div>
   </div>
@@ -700,40 +829,52 @@ a { color: var(--accent); }
   <div class="scroll doc-table"><table>
     <thead><tr><th>Item</th><th class="num">Hours</th><th class="num">Amount</th></tr></thead>
     <tbody>
-      <tr class="phase"><td>Phase 1. Capture carrier invoices</td><td class="num">24</td><td class="num">R 14,400</td></tr>
-      <tr><td>Data model and database migration</td><td class="num">1.5</td><td class="num">R 900</td></tr>
-      <tr><td>Capture rules (invoice exists, amount matches, duplicates, VAT)</td><td class="num">4</td><td class="num">R 2,400</td></tr>
-      <tr><td>Capture screen and carrier invoice list</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
+      <tr class="phase"><td>Phase 1. Capture carrier invoices</td><td class="num">26.5</td><td class="num">R 15,900</td></tr>
+      <tr><td>Data model and database migration</td><td class="num">1</td><td class="num">R 600</td></tr>
+      <tr><td>Capture rules (invoice exists, amount matches, duplicates, VAT)</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
+      <tr><td>Capture screen and carrier invoice list (unpaid only, carrier filter)</td><td class="num">4</td><td class="num">R 2,400</td></tr>
       <tr><td>Locking of captured invoice numbers; list of authorised, not yet captured</td><td class="num">2</td><td class="num">R 1,200</td></tr>
-      <tr><td>Cut-off day and start date settings (database, System Settings fields, month list set at capture, list filters)</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
-      <tr><td>Carrier Payments menu group and links between the pages</td><td class="num">1</td><td class="num">R 600</td></tr>
-      <tr><td>Deleting a carrier invoice (impact warning, release notes returned to Pending Payment)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
-      <tr><td>Deleting a release note on a carrier invoice (warning, linked carrier invoice removed)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
-      <tr><td>Testing</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
-
-      <tr class="phase"><td>Phase 2. Payments and reconciliation</td><td class="num">23</td><td class="num">R 13,800</td></tr>
-      <tr><td>Payment data model and migration</td><td class="num">1</td><td class="num">R 600</td></tr>
-      <tr><td>Monthly totals, brought forward, mark paid, reverse payment, audit trail</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
-      <tr><td>Month periods from the cut-off day (period dates, brought forward, year-end)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
-      <tr><td>Release note Paid status from carrier payments; remove old button; protect existing paid notes</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
-      <tr><td>Carrier Payments screen and Mark as paid dialog</td><td class="num">6</td><td class="num">R 3,600</td></tr>
-      <tr><td>Carrier Overview screen (all carriers for a month, link through to each carrier)</td><td class="num">3</td><td class="num">R 1,800</td></tr>
-      <tr><td>Removing payments and reverting release notes when a paid carrier invoice, or a release note on it, is deleted</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Cut-off day and start date settings (database, System Settings fields, month list set at capture, list filters)</td><td class="num">4</td><td class="num">R 2,400</td></tr>
+      <tr><td>Menu changes (Carrier Invoices item, Operator Invoices and Operator Statements renames, Carrier Statements under Reports) and links between the pages</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Credits: data model, audit and delete-dialog lines</td><td class="num">0.5</td><td class="num">R 300</td></tr>
+      <tr><td>Credits: capture and edit rules, difference check and live preview</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Credits: capture form (credit rows, Add credit dialog, difference message)</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+      <tr><td>Credits: testing</td><td class="num">1</td><td class="num">R 600</td></tr>
+      <tr><td>Deleting a carrier invoice (impact warning, release notes returned to Pending Payment)</td><td class="num">1</td><td class="num">R 600</td></tr>
+      <tr><td>Deleting a release note on a carrier invoice (warning, linked carrier invoice removed)</td><td class="num">1</td><td class="num">R 600</td></tr>
       <tr><td>Testing</td><td class="num">3</td><td class="num">R 1,800</td></tr>
 
-      <tr class="phase"><td>Phase 3. Statement and go-live</td><td class="num">7</td><td class="num">R 4,200</td></tr>
-      <tr><td>Printable reconciliation statement</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
-      <tr><td>User guide update</td><td class="num">1</td><td class="num">R 600</td></tr>
-      <tr><td>User acceptance testing, deployment and go-live support</td><td class="num">3.5</td><td class="num">R 2,100</td></tr>
+      <tr class="phase"><td>Phase 2. Payments and reconciliation</td><td class="num">24.5</td><td class="num">R 14,700</td></tr>
+      <tr><td>Payment data model and migration</td><td class="num">1</td><td class="num">R 600</td></tr>
+      <tr><td>Monthly totals, brought forward, mark paid, reverse payment, audit trail</td><td class="num">4</td><td class="num">R 2,400</td></tr>
+      <tr><td>Month periods from the cut-off day (period dates, brought forward, year-end)</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Release note Paid status from carrier payments; remove old button; protect existing paid notes</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+      <tr><td>Carrier Payments screen and Mark as paid dialog</td><td class="num">5</td><td class="num">R 3,000</td></tr>
+      <tr><td>Carrier Statements screen (all carriers for a month, admin only, Open to each carrier)</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+      <tr><td>Credits: amount due in the invoice list, Carrier Payments, Carrier Statements and Mark as paid</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+      <tr><td>Credits: testing of the figures</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Removing payments and reverting release notes when a paid carrier invoice, or a release note on it, is deleted</td><td class="num">1.5</td><td class="num">R 900</td></tr>
+      <tr><td>Testing</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
 
-      <tr class="phase"><td>Estimate before discount</td><td class="num">54</td><td class="num">R 32,400</td></tr>
-      <tr><td>Discount</td><td class="num"></td><td class="num">– R 17,400</td></tr>
-      <tr class="grand"><td>Total after discount</td><td class="num"></td><td class="num">R 15,000</td></tr>
+      <tr class="phase"><td>Phase 3. Statements and go-live</td><td class="num">16</td><td class="num">R 9,600</td></tr>
+      <tr><td>Printable reconciliation statement (A4 landscape)</td><td class="num">2</td><td class="num">R 1,200</td></tr>
+      <tr><td>Credits on the printable statement</td><td class="num">1</td><td class="num">R 600</td></tr>
+      <tr><td>Download PDF on Carrier Payments</td><td class="num">0.5</td><td class="num">R 300</td></tr>
+      <tr><td>Email statement (statement message on carriers, send, warnings, tests)</td><td class="num">5</td><td class="num">R 3,000</td></tr>
+      <tr><td>Print All and Download All PDFs on Carrier Statements (each carrier on a new page, tests)</td><td class="num">4.5</td><td class="num">R 2,700</td></tr>
+      <tr><td>User guide update</td><td class="num">0.5</td><td class="num">R 300</td></tr>
+      <tr><td>User acceptance testing, deployment and go-live support</td><td class="num">2.5</td><td class="num">R 1,500</td></tr>
+
+      <tr class="phase"><td>Estimate before discount</td><td class="num">67</td><td class="num">R 40,200</td></tr>
+      <tr><td>Discount on the version 1.0 scope (long working relationship)</td><td class="num">– 29</td><td class="num">– R 17,400</td></tr>
+      <tr><td>Discount on the additions in version 1.1 (9 of the 13 additional hours)</td><td class="num">– 9</td><td class="num">– R 5,400</td></tr>
+      <tr class="phase"><td>Total discount</td><td class="num">– 38</td><td class="num">– R 22,800</td></tr>
+      <tr class="grand"><td>Total after discount</td><td class="num"></td><td class="num">R 17,400</td></tr>
     </tbody>
   </table></div>
 </section>
 
-<p class="foot">Carrier Payments &amp; Reconciliation · Version 1.0 · 21 October 2026 · Prepared for Container Deals CC by Jacques Ramsden</p>
+<p class="foot">Carrier Payments &amp; Reconciliation · Version 1.1 · 25 October 2026 · Prepared for Container Deals CC by Jacques Ramsden</p>
 <script>
 /* Label every table cell with its column heading so rows can stack as cards on a phone. Without this script the tables simply scroll sideways. */
 (function () {
